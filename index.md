@@ -106,20 +106,19 @@ With help of Big Query “[Loading data from cloud storage](https://cloud.google
       - After selecting the file location, it will ask you for [schema selection](https://cloud.google.com/bigquery/docs/loading-data-local#loading_data_from_a_local_data_source), you can select the “Automatically detect” option this will detect the schema on basis of first row column name of you CSV file. Otherwise you can define the schema on your own also.
       - After defining schema, you have option to [appending to or overwriting](https://cloud.google.com/bigquery/docs/loading-data-local#appending_to_or_overwriting_a_table_using_a_local_file) a table using a local file. If the schema of the data does not match the schema of the destination table or partition, you can update the schema when you append to it or overwrite it.
   - How the schema for the table and it contains look after loading data?
-        - In this project I have created the table for Green, Yellow, FHV taxis in Big Query as below:
-        - 
-        ```markdown
+        - In this project I have created the table for Green, Yellow, FHV taxis in Big Query as below
+        -   
             1. **Yellow Taxis Table schema and content preview:**
                     ![Image](yellow_trip_Table_schema.png)
                     ![Image](yellow_trip_Table_content.png)
             2. **Green Taxis Table schema and content preview:**
                     ![Image](green_trip_Table_schema.png)
                     ![Image](green_trip_Table_content.png)
-         ```
+                    
 
 ## Analytics
 
-
+<iframe width="600" height="1334" src="https://datastudio.google.com/embed/reporting/c9c707e7-9403-4d0a-9d82-b64c293a0d2d/page/1M" frameborder="0" style="border:0" allowfullscreen></iframe>
             
 ## Welcome to GitHub Pages
 

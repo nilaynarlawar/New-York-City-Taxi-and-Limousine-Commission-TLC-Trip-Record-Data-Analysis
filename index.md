@@ -3,7 +3,6 @@
 ## Motivation
 <p>You’ll know which city I am talking about if I start describing it as the most populous city in the States, one of the biggest and the best places to be, the Big Apple, The City that never sleeps (literally). You got it right! Its NYC! I am very sure, that out of the many things that pop in your mind when you think of New York, the yellow taxicab definitely has been in the list. New York is the home of this iconic yellow cab and can be commonly identified as a symbol of the city. The history of these cabs licensed under New York City Taxi and Limousine Commission (TLC) goes way back to the 70’s [[1]](https://en.wikipedia.org/wiki/Taxicabs_of_New_York_City). These cabs can be hailed from the streets anywhere and serve as a means of commute for thousands of New Yorkers on a daily basis. Where technology has advanced to an extent that almost everything is just a click away, this cab system has functioned in a conventional non-tech manner, until the recent launch of an app. This spiked my interest to take a look into the backend of this system. Being a techie, I could not resist the temptation of uncovering what lies beneath the humungous heap of data that must have accumulated over all these years. Like, what modes of payment were the largely preferred by the customers, how generously would they tip their cabbies, what were the vendor preferences, [[2]](https://www.marketwatch.com/story/this-chart-shows-how-uber-rides-sped-past-nyc-yellow-cabs-in-just-six-years-2019-08-09) why are people preferring Lyft and Uber when a taxicab system was already in place? I have managed to acquire a small data set of the past few years which will help me gain deep meaningful insights about this popular system. Since, such a large valuable amount of data is offered in a very basic format, its essential that it be processed meticulously and represented in a way which is easiest to understand and pleases the eye.</p>
 
-![Image](yellow_trip_Table_schema.png)
 
 ## About the Data
 During the search for data set I found that Amazon have open dataset on AWS. When data is shared on AWS, anyone can analyze it and build service on top of it using a broad range of compute and data analytics product. This helps me a lot as it allows me to spend more time on data analysis rather than data acquisition. The [Registry of Open Data](https://registry.opendata.aws/) on AWS makes help me to find the dataset which are made publicly available through AWS services. [New York City Taxi and Limousine Commission (TLC) Trip Record Data](https://registry.opendata.aws/nyc-tlc-trip-records-pds/) is one of those open datasets on AWS which I choose for this project. Below are few details about this dataset:
@@ -13,8 +12,8 @@ During the search for data set I found that Amazon have open dataset on AWS. Whe
   - In this project I am going to analyze the 3 years data (2017-2019) and the size of dataset is 53.51 GB.
   - This data set have NYC TLC trip data in form of CSV file, for each year it has 12 CSV files (per month one file) for each type of taxis services
   - Below is the structure of taxis services trip records:
-    1.[Yellow Taxis](https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf)
-    2.[Green Taxis](https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_green.pdf)
+      1.[Yellow Taxis](https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf)
+      2.[Green Taxis](https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_green.pdf)
   - Each of the CSV file for every taxi will have a comma separated data as shown below:
   ```markdown
 For example: VTS,2009-01-04 02:52:00, 2009-01-04 03:02:00, 1, 2.6299999999999999, -73.991956999999999, 40.721567, -73.993803, 40.695922000000003, CASH, 8.9000000000000004, 0.5, , 0, 0, 9.4000000000000004
@@ -105,6 +104,16 @@ With help of Big Query “[Loading data from cloud storage](https://cloud.google
       - After defining schema, you have option to [appending to or overwriting](https://cloud.google.com/bigquery/docs/loading-data-local#appending_to_or_overwriting_a_table_using_a_local_file) a table using a local file. If the schema of the data does not match the schema of the destination table or partition, you can update the schema when you append to it or overwrite it.
   - How the schema for the table and it contains look after loading data?
         - In this project I have created the table for Green, Yellow, FHV taxis in Big Query as below:
+            1. Yellow Taxis Table schema and content preview:
+            - Schema 
+                        ![Image](yellow_trip_Table_schema.png)
+            - Data content
+                        ![Image](yellow_trip_Table_content.png)
+            2. Green Taxis Table schema and content preview:
+            - Schema
+                        ![Image](green_trip_Table_schema.png)
+            - Data content
+                        ![Image](green_trip_Table_content.png)
             
 ## Welcome to GitHub Pages
 

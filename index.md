@@ -12,8 +12,10 @@ During the search for data set I found that Amazon have open dataset on AWS. Whe
   - In this project I am going to analyze the 3 years data (2017-2019) and the size of dataset is 53.51 GB.
   - This data set have NYC TLC trip data in form of CSV file, for each year it has 12 CSV files (per month one file) for each type of taxis services
   - Below is the structure of taxis services trip records:
+  
       1.[Yellow Taxis](https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf)
       2.[Green Taxis](https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_green.pdf)
+      
   - Each of the CSV file for every taxi will have a comma separated data as shown below:
   ```markdown
 For example: VTS,2009-01-04 02:52:00, 2009-01-04 03:02:00, 1, 2.6299999999999999, -73.991956999999999, 40.721567, -73.993803, 40.695922000000003, CASH, 8.9000000000000004, 0.5, , 0, 0, 9.4000000000000004
@@ -105,14 +107,14 @@ With help of Big Query “[Loading data from cloud storage](https://cloud.google
   - How the schema for the table and it contains look after loading data?
         - In this project I have created the table for Green, Yellow, FHV taxis in Big Query as below:
             1. Yellow Taxis Table schema and content preview:
-            - Schema 
-                        ![Image](yellow_trip_Table_schema.png)
-            - Data content
-                        ![Image](yellow_trip_Table_content.png)
+                    1. Schema   
+                      ![Image](yellow_trip_Table_schema.png)
+                    2. Data content
+                      ![Image](yellow_trip_Table_content.png)       
             2. Green Taxis Table schema and content preview:
-            - Schema
+                    1. Schema
                         ![Image](green_trip_Table_schema.png)
-            - Data content
+                    2. Data content
                         ![Image](green_trip_Table_content.png)
             
 ## Welcome to GitHub Pages

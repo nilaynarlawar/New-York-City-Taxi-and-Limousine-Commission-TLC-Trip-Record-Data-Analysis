@@ -1,7 +1,7 @@
 # New York City Taxi and Limousine Commission (TLC) Trip Record Data Analysis
 
 ## Motivation
-<p>You’ll know which city I am talking about if I start describing it as the most populous city in the States, one of the biggest and the best places to be, the Big Apple, The City that never sleeps (literally). You got it right! Its NYC! I am very sure, that out of the many things that pop in your mind when you think of New York, the yellow taxicab definitely has been in the list. New York is the home of this iconic yellow cab and can be commonly identified as a symbol of the city. The history of these cabs licensed under New York City Taxi and Limousine Commission (TLC) goes way back to the 70’s [(1)](https://en.wikipedia.org/wiki/Taxicabs_of_New_York_City). These cabs can be hailed from the streets anywhere and serve as a means of commute for thousands of New Yorkers on a daily basis. Where technology has advanced to an extent that almost everything is just a click away, this cab system has functioned in a conventional non-tech manner, until the recent launch of an app. This spiked my interest to take a look into the backend of this system. Being a techie, I could not resist the temptation of uncovering what lies beneath the humungous heap of data that must have accumulated over all these years. Like, what modes of payment were the largely preferred by the customers, how generously would they tip their cabbies, what were the vendor preferences, [(2)](https://www.marketwatch.com/story/this-chart-shows-how-uber-rides-sped-past-nyc-yellow-cabs-in-just-six-years-2019-08-09) why are people preferring Lyft and Uber when a taxicab system was already in place? I have managed to acquire a small data set of the past few years which will help me gain deep meaningful insights about this popular system. Since, such a large valuable amount of data is offered in a very basic format, its essential that it be processed meticulously and represented in a way which is easiest to understand and pleases the eye.</p>
+<p>You’ll know which city I am talking about if I start describing it as the most populous city in the States, one of the biggest and the best places to be, the Big Apple, The City that never sleeps (literally). You got it right! Its NYC! I am very sure, that out of the many things that pop in your mind when you think of New York, the yellow taxicab:taxi: definitely has been in the list. New York is the home of this iconic yellow cab and can be commonly identified as a symbol of the city. The history of these cabs licensed under New York City Taxi and Limousine Commission (TLC) goes way back to the 70’s [(1)](https://en.wikipedia.org/wiki/Taxicabs_of_New_York_City). These cabs can be hailed from the streets anywhere and serve as a means of commute for thousands of New Yorkers on a daily basis. Where technology has advanced to an extent that almost everything is just a click away, this cab system has functioned in a conventional non-tech manner, until the recent launch of an app. This spiked my interest to take a look into the backend of this system. Being a techie, I could not resist the temptation of uncovering what lies beneath the humungous heap of data that must have accumulated over all these years. Like, what modes of payment were the largely preferred by the customers, how generously would they tip their cabbies, what were the vendor preferences, [(2)](https://www.marketwatch.com/story/this-chart-shows-how-uber-rides-sped-past-nyc-yellow-cabs-in-just-six-years-2019-08-09) why are people preferring Lyft and Uber when a taxicab system was already in place? I have managed to acquire a small data set of the past few years which will help me gain deep meaningful insights about this popular system. Since, such a large valuable amount of data is offered in a very basic format, its essential that it be processed meticulously and represented in a way which is easiest to understand and pleases the eye.</p>
 
 
 ## About the Data
@@ -107,12 +107,16 @@ With help of Big Query “[Loading data from cloud storage](https://cloud.google
       - After defining schema, you have option to [appending to or overwriting](https://cloud.google.com/bigquery/docs/loading-data-local#appending_to_or_overwriting_a_table_using_a_local_file) a table using a local file. If the schema of the data does not match the schema of the destination table or partition, you can update the schema when you append to it or overwrite it.
   - How the schema for the table and it contains look after loading data?
         - In this project I have created the table for Green, Yellow, FHV taxis in Big Query as below:
-            1. Yellow Taxis Table schema and content preview:
+            1. **Yellow Taxis Table schema and content preview:**
                     ![Image](yellow_trip_Table_schema.png)
                     ![Image](yellow_trip_Table_content.png)
-            2. Green Taxis Table schema and content preview:
+            2. **Green Taxis Table schema and content preview:**
                     ![Image](green_trip_Table_schema.png)
                     ![Image](green_trip_Table_content.png)
+
+## Analytics
+
+<iframe width="900" height="1334" src="https://datastudio.google.com/embed/reporting/c9c707e7-9403-4d0a-9d82-b64c293a0d2d/page/1M" frameborder="0" style="border:0" allowfullscreen></iframe>
             
 ## Welcome to GitHub Pages
 

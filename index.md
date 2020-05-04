@@ -22,7 +22,9 @@ For example: VTS,2009-01-04 02:52:00, 2009-01-04 03:02:00, 1, 2.6299999999999999
 ## Obtaining the Data & Preprocessing
 - Step 1: Files Downloading and storing to on local disk
 To download the CSV file I wrote the below Python script. In this script I am giving all the URLs in the form of array as an input to download_csv function and with the help of requests library I am downloading the csv file and write it to destination folder.
+
 ```markdown
+
 import requests
 from time import time
 urls = ["https://nyc-tlc.s3.amazonaws.com/trip+data/fhv_tripdata_2019-01.csv",
@@ -50,6 +52,7 @@ for x in urls:
     download_csv(x)
     print(f"Time to download: {time() - start}")
 code ref: https://likegeeks.com/downloading-files-using-python/
+
 ```
 
 - Step 2: Data filtering

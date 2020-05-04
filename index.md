@@ -108,16 +108,18 @@ With help of Big Query “[Loading data from cloud storage](https://cloud.google
   - How the schema for the table and it contains look after loading data?
         - In this project I have created the table for Green, Yellow, FHV taxis in Big Query as below:
         - 
+        ```markdown
             1. **Yellow Taxis Table schema and content preview:**
                     ![Image](yellow_trip_Table_schema.png)
                     ![Image](yellow_trip_Table_content.png)
             2. **Green Taxis Table schema and content preview:**
                     ![Image](green_trip_Table_schema.png)
                     ![Image](green_trip_Table_content.png)
+         ```
 
 ## Analytics
 
-<iframe width="900" height="1334" src="https://datastudio.google.com/embed/reporting/c9c707e7-9403-4d0a-9d82-b64c293a0d2d/page/1M" frameborder="0" style="border:0" allowfullscreen></iframe>
+
             
 ## Welcome to GitHub Pages
 

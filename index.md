@@ -51,8 +51,10 @@ for x in urls:
     print(f"Time to download: {time() - start}")
 code ref: https://likegeeks.com/downloading-files-using-python/
 ```
+
 - Step 2: Data filtering
 Every file was approximately size of 2 GB, so used the below Python script to drop some of its column before uploading it to Google cloud storage. It reduces uploading time consumption.
+
 ```markdown
 import os
 import pandas as pd
@@ -75,6 +77,7 @@ for r, d, f in os.walk(my_path):
               # The header should not be printed more than one
               add_header = False
 ```
+
 - Step 3: Data Storing
 All the csv file of size 53.51 GB are stored on the google cloud storage with help of google command line instruction as given below:
 ```markdown

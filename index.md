@@ -15,14 +15,14 @@ During the search for data set I found that Amazon have open dataset on AWS. Whe
     1.[Yellow Taxis](https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf)
     2.[Green Taxis](https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_green.pdf)
   - Each of the CSV file for every taxi will have a comma separated data as shown below:
-  ```
+  ```markdown
 For example: VTS,2009-01-04 02:52:00, 2009-01-04 03:02:00, 1, 2.6299999999999999, -73.991956999999999, 40.721567, -73.993803, 40.695922000000003, CASH, 8.9000000000000004, 0.5, , 0, 0, 9.4000000000000004
 ```
 
 ## Obtaining the Data & Preprocessing
 - Step 1: Files Downloading and storing to on local disk
 To download the CSV file I wrote the below Python script. In this script I am giving all the URLs in the form of array as an input to download_csv function and with the help of requests library I am downloading the csv file and write it to destination folder.
-```
+```markdown
 import requests
 from time import time
 urls = ["https://nyc-tlc.s3.amazonaws.com/trip+data/fhv_tripdata_2019-01.csv",
@@ -53,7 +53,7 @@ code ref: https://likegeeks.com/downloading-files-using-python/
 ```
 - Step 2: Data filtering
 Every file was approximately size of 2 GB, so used the below Python script to drop some of its column before uploading it to Google cloud storage. It reduces uploading time consumption.
-```
+```markdown
 import os
 import pandas as pd
 col_to_put = ['VendorID', 'tpep_pickup_datetime',
@@ -77,7 +77,7 @@ for r, d, f in os.walk(my_path):
 ```
 - Step 3: Data Storing
 All the csv file of size 53.51 GB are stored on the google cloud storage with help of google command line instruction as given below:
-```
+```markdown
 gsutil -o GSUtil:parallel_composite_upload_threshold=150M -m cp -r FOLDERNAME/FILENAME gs://BUCKET_PATH
 ```
 You can find more details regarding file uploading on google storage through command [here](https://cloud.google.com/storage/docs/gsutil/commands/cp#synopsis).

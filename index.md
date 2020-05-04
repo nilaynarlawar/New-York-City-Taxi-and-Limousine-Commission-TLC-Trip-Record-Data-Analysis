@@ -107,6 +107,7 @@ With help of Big Query “[Loading data from cloud storage](https://cloud.google
       - After defining schema, you have option to [appending to or overwriting](https://cloud.google.com/bigquery/docs/loading-data-local#appending_to_or_overwriting_a_table_using_a_local_file) a table using a local file. If the schema of the data does not match the schema of the destination table or partition, you can update the schema when you append to it or overwrite it.
   - How the schema for the table and it contains look after loading data?
         - In this project I have created the table for Green, Yellow, FHV taxis in Big Query as below:
+        - 
             1. **Yellow Taxis Table schema and content preview:**
                     ![Image](yellow_trip_Table_schema.png)
                     ![Image](yellow_trip_Table_content.png)

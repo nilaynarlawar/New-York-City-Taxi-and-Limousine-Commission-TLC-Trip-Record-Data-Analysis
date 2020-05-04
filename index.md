@@ -128,6 +128,7 @@ With help of Big Query “[Loading data from cloud storage](https://cloud.google
 
 ## Analytics
 
+<iframe width="600" height="1334" src="https://datastudio.google.com/embed/reporting/c9c707e7-9403-4d0a-9d82-b64c293a0d2d/page/1M" frameborder="0" style="border:0" allowfullscreen></iframe>
 
 ### Markdown
 

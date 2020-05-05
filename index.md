@@ -139,17 +139,17 @@ With help of Big Query “[Loading data from cloud storage](https://cloud.google
  <br/>
 - [chart 3] shows that no. of customers for a green taxi is kind of constant and there is no significant growth in ridership. Also, Yellow taxi data shows that growth in ridership is increasing and decreasing over the years over the month. This data can be better viewed if it is shown per year but I wanted to get an idea for the last 3 years aggregately so I calculated that way. 
  <br/>
- - [chart 4] People say that nightlife is amazing in New York, I feel that my data is also proof of that. Looking at yellow taxi data, taxi is mostly busy between 1800 and 2000 hours. This is usually dinner time and after office hours. A green taxi is not really showing anything special, it looks like a taxi is busy throughout the day is same. 
+- In [chart 4] People say that nightlife is amazing in New York, I feel that my data is also proof of that. Looking at yellow taxi data, taxi is mostly busy between 1800 and 2000 hours. This is usually dinner time and after office hours. A green taxi is not really showing anything special, it looks like a taxi is busy throughout the day is same. 
  <br/>
- - In [chart 5] and [chart 6], my motto for this chart was to check how generous people are towards taxis drives. I was looking for a specific pattern like is there a specific day or month when people are more generous in tips but after looking at the data I didn't find such facts. Instead, I found that every year people have shown their generosity towards drives as there is no spike in the data graph and also tip amount has grown over the years. Also, it shows that tip amount is growing over the year for green taxies as well as yellow taxis, but the spike in the yellow taxis cab shows the data discrepancy which I found during loading data to Big Query.
+- In [chart 5] and [chart 6], my motto for this chart was to check how generous people are towards taxis drives. I was looking for a specific pattern like is there a specific day or month when people are more generous in tips but after looking at the data I didn't find such facts. Instead, I found that every year people have shown their generosity towards drives as there is no spike in the data graph and also tip amount has grown over the years. Also, it shows that tip amount is growing over the year for green taxies as well as yellow taxis, but the spike in the yellow taxis cab shows the data discrepancy which I found during loading data to Big Query.
 <br/>
 
 - I found the two interesting facts while analyzing the data they are as below:
-  1. Trends in Payment mode: Over the year "No charge" mode of payment is reduced for Green taxis[Table 1], but not the same case for yellow taxis[Table 2]. Also, there is only one electronic mode of payment available in NYC TLC, so there is a scope of development for NYC TLC cooperation as well as the fintech industry to include more electronic payment modes like e-wallets, apple pay, google pay etc.
+1. Trends in Payment mode: Over the year "No charge" mode of payment is reduced for Green taxis[Table 1], but not the same case for yellow taxis[Table 2]. Also, there is only one electronic mode of payment available in NYC TLC, so there is a scope of development for NYC TLC cooperation as well as the fintech industry to include more electronic payment modes like e-wallets, apple pay, google pay etc.
 <br/>
-  2. Busiest pick up location: Another interesting fact can help the department of transport to manage the traffic and parking problem as [Table 3] and [Table 4] shows which are the busiest pickup location ids for both the taxis.
-       
-  
+2. Busiest pick up location: Another interesting fact can help the department of transport to manage the traffic and parking problem as [Table 3] and [Table 4] shows which are the busiest pickup location ids for both the taxis.
+
+
 ### Challenges
   1. **Skewed Data:** I see that data for a yellow taxis for 2019 was not correct and it was showing data from 2018 and previous years which is incorrect so my analysis got impact due to that. Also, many fields were null which also disturbed the overall analysis.I overcame this by manually creating a schema for tables as well as dropping the rows and columns with the help of python script to reduce the impact of it on data analysis.
   2. **In correct data types:** In green taxi data, for 2019 vendor ids were of type integer but for 2018 and 2017 they were of type float so it didn't allow me to merge the data into the same table. I had to implement a solution where I created the 2019 table as a separate table from other tables (2017 and 2018 got merged into one table) and got the aggregated data by joining these 2 tables. 

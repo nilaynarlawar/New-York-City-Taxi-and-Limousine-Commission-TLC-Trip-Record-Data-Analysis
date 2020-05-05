@@ -158,17 +158,19 @@ With help of Big Query “[Loading data from cloud storage](https://cloud.google
     
 ### Future Work
 
-- With the given data I could analyze few good things like which taxi is popular among New yorkers, popular mode of payment, busiest hours for taxis, rider's generosity etc. This helps to get interesting info about taxies in Big Apple but given more data I would have done more detailed analysis. 
-- I would have loved to get more info on taxi driver ratings, instead of location id may be lat-long would have helped to get better picture, mode of payments would have been better, incidence info like accidents, delay in pickup, traffic rule violations, trips per driver, how long driver worked in a day.  
+- With the given data I could analyze few good things like which taxi is popular among New Yorkers, a popular mode of payment, busiest hours for taxis, rider generosity, etc. This helps to get interesting info about taxies in Big Apple but given more data, I would have done a more detailed analysis. 
+- I would have loved to get more info on taxi driver ratings, instead of location id may be lat-long would have helped to get a better picture, mode of payments would have been better, incidence info like accidents, delay in the pickup, traffic rule violations, trips per driver, how long driver worked in a day.   
    
 ### Query Execution Details
  
 ## Why Big Query ? 
-
-    - Faster and user friendly web UI for querying
-    - UDFs
-    - Easy to integrate with Google Data Studio
-    - Loading data from many sources like cloud storage
+There are many useful optimize feature which is provided by Big Query some those are below:
+1. Complex analysis can be done via SQL and user-defined functions (UDFs)
+2. BigQuery is suitable for calculating metrics/stats/aggregates over a large amount of data
+3. Faster and user-friendly web UI for querying and data loading.
+4. Multiple-way to load the data like Google cloud storage, local storage, other cloud storage.
+5. Easy to integrate with Google Data Studio to visualize the data.
+6. Stream-insert is available for receiving/ingesting live data into tables.
 
 
 

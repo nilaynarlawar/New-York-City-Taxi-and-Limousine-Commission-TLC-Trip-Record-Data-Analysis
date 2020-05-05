@@ -130,13 +130,22 @@ With help of Big Query “[Loading data from cloud storage](https://cloud.google
 
 ### Graphical Analysis with the help of Google Data Studio 
 
-
 <iframe width="1000" height="2000" src="https://datastudio.google.com/embed/reporting/c9c707e7-9403-4d0a-9d82-b64c293a0d2d/page/1M" frameborder="0" style="border:0" allowfullscreen></iframe>
 
 ### Analysis of Data
-  - **Overall Findings: ** 
-  - **Fact 1 **
-  - **Fact 2 **
+ - After creating tables from the repository data, I selected few columns on which I analyzed the data by quering and visualizing it. [chart 1] shows the most popular payment method for NYC taxies and winner is Credit card. This shows that people use cards mostly to pay for taxi fare. I have one oberservation, for 0.5% of trips mode of payment shows "No charges". This can be due to multiple reasons so not really sure if that means ride was cancelled or something else but I feel if data would have been more specific I could have projected more metrics on it. 
+ 
+- Lets talk about [chart 2], which is talking about how many passengers are served by each taxi type. Looking at the data, it shows that Green taxi served very less customers compare to Yellow Taxi from 2017-2019. Yellow taxi is clearly a winner in this case by serving 250M+ customers. Please note that I found few discripancies in the data for 2019 for yellow taxi so there may be some count issue for yellow taxi but still it is clearly a winner in customer count.
+ 
+- [chart 3] shows that no. of customers for green taxi is kind of constant and there is no significant growth in ridership. Also Yellow taxi data shows that growth in ridership is increasing and decreasing over the years over the month. This data can be better viewed if it is shown per year but I wanted to get idea for last 3 years aggregately so I calculated that way. 
+ 
+ - [chart 4] People say that night life is amazing in New York, I feel that my data is also the proof of that. Looking at yellow taxi data, taxi is mostly busy between 1800 and 2000 hours. This is usually dinner time and after office hours. Green taxi is not really showing anything special, looks like taxi is busy thorughout the day is same. 
+ 
+ - In [chart 5] and [chart 6], my moto for this chart was check how generous people are towards taxis drives. I was looking for specific pattern like if there is specific day or month when people are more generous in tips but after looking at the data I didn't find such facts. Instead  I found that every year people have shown there generosity towards drives as there is no spike in the data graph. Also it shows that tip amount is growing over the year for green taxies as well as yellow taxis, but the spike in the yellow taxis cab shows the data descripancy which I found during loading data to Big Query.
+
+- I found the two intresting fact while analzing thr data those are below: 
+        1. Trends in Payment mode: Over the year "No charge" mode of payment is reduced for Green taxis[Table 1], but not the same case for yellow taxis[Table 2]. Also there is only one eletronic mode of payment available in NYC TLC, so here is the scope of development for NYC TLC cooroeration as well as fintech industry to include more electronic payment mode like e-wallets.
+        2. Busiest pick up location: Another intresteing fact can help the department of transport to manage the traffic and parking problem as [Table 3] and [Table 4] show which are the most busiest pickup location ids for both the taxis.
   
 ### Challenges
     1. Skewed Data:
@@ -150,6 +159,7 @@ With help of Big Query “[Loading data from cloud storage](https://cloud.google
 ### Query Execution Details
 
 ## Why Big Query ? 
+
     - Faster and user friendly web UI for querying
     - UDFs
     - Easy to integrate with Google Data Studio

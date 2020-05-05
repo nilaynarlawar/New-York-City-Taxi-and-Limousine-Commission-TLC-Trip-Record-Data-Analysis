@@ -133,27 +133,27 @@ With help of Big Query “[Loading data from cloud storage](https://cloud.google
 
 <iframe width="1000" height="2000" src="https://datastudio.google.com/embed/reporting/c9c707e7-9403-4d0a-9d82-b64c293a0d2d/page/1M" frameborder="0" style="border:0" allowfullscreen></iframe>
 
-### Markdown
+### Analysis of Data
+  - **Overall Findings: ** 
+  - **Fact 1 **
+  - **Fact 2 **
+  
+### Challenges
+    1. Skewed Data:
+    
+    2. In correct data types:
+    
+    3. Missing field values:
+    
+### Future Work
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Query Execution Details
 
-```markdown
-Syntax highlighted code block
+## Why Big Query ? 
+    - Faster and user friendly web UI for querying
+    - UDFs
+    - Easy to integrate with Google Data Studio
+    - Loading data from many sources like cloud storage
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 

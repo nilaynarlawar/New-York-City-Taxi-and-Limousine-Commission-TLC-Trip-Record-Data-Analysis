@@ -141,23 +141,33 @@ With help of Big Query “[Loading data from cloud storage](https://cloud.google
  
  - [chart 4] People say that nightlife is amazing in New York, I feel that my data is also proof of that. Looking at yellow taxi data, taxi is mostly busy between 1800 and 2000 hours. This is usually dinner time and after office hours. A green taxi is not really showing anything special, it looks like a taxi is busy throughout the day is same. 
  
- - In [chart 5] and [chart 6], my motto for this chart was to check how generous people are towards taxis drives. I was looking for a specific pattern as if there is a specific day or month when people are more generous in tips but after looking at the data I didn't find such facts. Instead, I found that every year people have shown their generosity towards drives as there is no spike in the data graph. Also, it shows that tip amount is growing over the year for green taxies as well as yellow taxis, but the spike in the yellow taxis cab shows the data discrepancy which I found during loading data to Big Query.
+ - In [chart 5] and [chart 6], my motto for this chart was to check how generous people are towards taxis drives. I was looking for a specific pattern like is there a specific day or month when people are more generous in tips but after looking at the data I didn't find such facts. Instead, I found that every year people have shown their generosity towards drives as there is no spike in the data graph and also tip amount has grown over the years. Also, it shows that tip amount is growing over the year for green taxies as well as yellow taxis, but the spike in the yellow taxis cab shows the data discrepancy which I found during loading data to Big Query.
 
-- I found the two interesting facts while analyzing the data that are below: 
-        1. Trends in Payment mode: Over the year "No charge" mode of payment is reduced for Green taxis[Table 1], but not the same case for yellow taxis[Table 2]. Also, there is only one electronic mode of payment available in NYC TLC, so here is the scope of development for NYC TLC cooperation as well as the fintech industry to include more electronic payment modes like e-wallets.
-        2. Busiest pick up location: Another interesting fact can help the department of transport to manage the traffic and parking problem as [Table 3] and [Table 4] show which are the busiest pickup location ids for both the taxis.
+- I found the two interesting facts while analyzing the data they are as below:
+
+        1. Trends in Payment mode: Over the year "No charge" mode of payment is reduced for Green taxis[Table 1], but not the same case for yellow taxis[Table 2]. Also, there is only one electronic mode of payment available in NYC TLC, so there is a scope of development for NYC TLC cooperation as well as the fintech industry to include more electronic payment modes like e-wallets, apple pay, google pay etc.
+        
+        2. Busiest pick up location: Another interesting fact can help the department of transport to manage the traffic and parking problem as [Table 3] and [Table 4] shows which are the busiest pickup location ids for both the taxis.
+       
   
 ### Challenges
-    1. Skewed Data:
-    
-    2. In correct data types:
-    
-    3. Missing field values:
+
+     1. Skewed Data: I see that data for a yellow taxis for 2019 was not correct and it was showing data from 2018 and previous years which is incorrect so my analysis got impact due to that. Also, many fields were null which also disturbed the overall analysis.
+      I overcame this by manually creating a schema for tables as well as dropping the rows and columns with the help of python script to reduce the impact of it on data analysis.
+      
+    2. In correct data types: In green taxi data, for 2019 vendor ids were of type integer but for 2018 and 2017 they were of type float so it didn't allow me to merge the data into the same table. I had to implement a solution where I created the 2019 table as a separate table from other tables (2017 and 2018 got merged into one table) and got the aggregated data by joining these 2 tables. 
+    
+    3. Missing field values:
+      Data for a mode of the payment was inconsistent since for few payment modes I couldn't find the data from 2017-2019. There might be a case that those modes may never be used but I felt they had little discrepancies. I had to merge such data into the category as "other" to minimize the impact on my analysis. 
+    
+    4. Data Studio issue with Array Aggregator: Looks like Google data studio is not able to handle data which is aggregated by array aggregators so I had to put screenshots of the outcome into the charts instead of some fancy charts which could have been better in visualization.
     
 ### Future Work
-
+   With the given data I could analyze few good things like which taxi is popular among New yorkers, popular mode of payment, busiest hours for taxis, rider's generosity etc. This helps to get interesting info about taxies in Big Apple but given more data I would have done more detailed analysis. 
+   I would have loved to get more info on taxi driver ratings, instead of location id may be lat-long would have helped to get better picture, mode of payments would have been better, incidence info like accidents, delay in pickup, traffic rule violations, trips per driver, how long driver worked in a day.  
+   
 ### Query Execution Details
-
+ 
 ## Why Big Query ? 
 
     - Faster and user friendly web UI for querying

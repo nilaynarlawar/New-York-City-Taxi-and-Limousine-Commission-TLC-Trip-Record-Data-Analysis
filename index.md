@@ -173,7 +173,7 @@ Below is the execution details to retrive Table 1-2 and Table 3-4 data from Big 
 ![Image](Table-4 execution details image.JPG)
  
 ## Why Big Query ? 
-There are many useful optimize feature which is provided by Big Query some those are below:
+There are many useful as well as optimization features which is provided by Big Query some those are below:
 1. Complex analysis can be done via SQL and user-defined functions (UDFs)
 2. BigQuery is suitable for calculating metrics/stats/aggregates over a large amount of data
 3. Faster and user-friendly web UI for querying and data loading.

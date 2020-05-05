@@ -1,0 +1,364 @@
+
+---------------------------Value section [Top Left Hand side Data]----------------------------------------------------
+
+WITH 
+green_17_18 as (SELECT trip_distance, total_amount FROM `cs-686-dpc.nyc_tlc_trip_records.green_trip_18_17`),
+green_19 as (SELECT trip_distance, total_amount FROM `cs-686-dpc.nyc_tlc_trip_records.green_trip_19`),
+green as (SELECT * FROM green_17_18 UNION ALL SELECT * FROM green_19),
+yellow as  (SELECT trip_distance, total_amount FROM `cs-686-dpc.nyc_tlc_trip_records.yellow_trip`),
+total_trip_yellow as (SELECT count(*) as Total_Trip FROM (SELECT trip_distance FROM yellow)),
+total_trip_green as (SELECT count(*) as Total_Trip FROM (SELECT trip_distance FROM green)),
+total_amt_yellow as (SELECT SUM(total_amount) FROM yellow),
+total_amt_green as (SELECT SUM(total_amount) FROM green),
+total_trip as (select SUM(Total_Trip) as Total_Trip
+from (select Total_Trip from total_trip_yellow union all select Total_Trip from total_trip_green)
+)
+
+
+SELECT total_trip.Total_Trip as Total_Trip, 
+        total_trip_yellow.Total_Trip as Total_Trip_Yellow,
+         total_trip_green.Total_Trip as Total_Trip_Green,
+         total_amt_yellow as Total_Amt_Yellow,
+         total_amt_green as Total_Amt_Green,
+from total_trip, total_trip_yellow, total_trip_green, total_amt_yellow, total_amt_green
+
+
+-----------------------------------Pie Chart [chart 1] Different Payment Mode-----------------------------------------------
+
+WITH 
+green_17_18 as (SELECT payment_type FROM `cs-686-dpc.nyc_tlc_trip_records.green_trip_18_17`),
+green_19 as (SELECT payment_type FROM `cs-686-dpc.nyc_tlc_trip_records.green_trip_19`),
+yellow as (SELECT payment_type FROM `cs-686-dpc.nyc_tlc_trip_records.yellow_trip`)
+
+
+
+SELECT case when Payment_type = 1 then 'Credit card'
+when Payment_type = 2 then 'Cash'
+when Payment_type = 3 then 'No charge'
+when Payment_type = 4 then 'Dispute' 
+when Payment_type = 5 then 'Other' end as Payment_type, Count(Payment_type) as Total_payment 
+FROM (SELECT * FROM green_17_18 UNION ALL SELECT * FROM green_19 UNION ALL SELECT * FROM yellow) 
+WHERE Payment_type IS NOT NULL Group by Payment_type
+
+
+-----------------------------------Bar Chart [chart 2] Number of Passenger Served-----------------------------------------------
+
+
+WITH  
+green_17_18 as (SELECT passenger_count FROM `cs-686-dpc.nyc_tlc_trip_records.green_trip_18_17`),
+green_19 as (SELECT passenger_count FROM `cs-686-dpc.nyc_tlc_trip_records.green_trip_19`),
+green as (SELECT * FROM green_17_18 UNION ALL SELECT * FROM green_19),
+yellow as  (SELECT passenger_count FROM `cs-686-dpc.nyc_tlc_trip_records.yellow_trip`),
+total_passenger_yellow as (SELECT count(*) as Total_Passenger FROM (SELECT passenger_count FROM yellow)),
+total_passenger_green as (SELECT count(*) as Total_Passenger FROM (SELECT passenger_count FROM green))
+
+
+SELECT Total_Passenger, 'Yellow' as Type
+FROM total_passenger_yellow
+UNION ALL
+SELECT Total_Passenger, 'Green' as Type
+FROM total_passenger_green
+
+
+-----------------------------------TimeLine Chart [chart 3] Number of trips carried out -----------------------------------------------
+
+WITH 
+green_17_18 as (SELECT lpep_pickup_datetime as Green_time FROM `cs-686-dpc.nyc_tlc_trip_records.green_trip_18_17`),
+green_19 as (SELECT lpep_pickup_datetime as Green_time FROM `cs-686-dpc.nyc_tlc_trip_records.green_trip_19`),
+green as (SELECT * FROM green_17_18 UNION ALL SELECT * FROM green_19),
+yellow as  (SELECT tpep_pickup_datetime as Yellow_time FROM `cs-686-dpc.nyc_tlc_trip_records.yellow_trip`),
+final_data_green as (SELECT month , count(*) as c1 from (Select Extract(Month From green.Green_time) as month From green)
+group by month order by month),
+final_data_yellow as (SELECT month , count(*) as c1 from (Select Extract(Month From yellow.Yellow_time) as month From yellow)
+group by month order by month)
+
+
+(SELECT CASE
+    WHEN Month_Name = 1 THEN 'January'
+    WHEN Month_Name = 2 THEN 'February'
+    WHEN Month_Name = 3 THEN 'March'
+    WHEN Month_Name = 4  THEN 'April'
+    WHEN Month_Name = 5 THEN 'May'
+    WHEN Month_Name = 6 THEN 'June'
+    WHEN Month_Name = 7  THEN 'July'
+    WHEN Month_Name = 8 THEN 'August'
+    WHEN Month_Name = 9 THEN 'September'
+    WHEN Month_Name = 10 THEN 'October'
+    WHEN Month_Name = 11 THEN 'November'
+    WHEN Month_Name = 12 THEN 'December'
+END AS span,c1, month, Taxis_type FROM 
+(Select c1, month, 'Green' as Taxis_Type, month as Month_Name from final_data_green)
+Order by month)
+
+UNION ALL
+
+(SELECT CASE
+    WHEN Month_Name = 1 THEN 'January'
+    WHEN Month_Name = 2 THEN 'February'
+    WHEN Month_Name = 3 THEN 'March'
+    WHEN Month_Name = 4  THEN 'April'
+    WHEN Month_Name = 5 THEN 'May'
+    WHEN Month_Name = 6 THEN 'June'
+    WHEN Month_Name = 7  THEN 'July'
+    WHEN Month_Name = 8 THEN 'August'
+    WHEN Month_Name = 9 THEN 'September'
+    WHEN Month_Name = 10 THEN 'October'
+    WHEN Month_Name = 11 THEN 'November'
+    WHEN Month_Name = 12 THEN 'December'
+END AS span,c1, month, Taxis_type FROM 
+(Select c1, month, 'Yellow' as Taxis_Type, month as Month_Name from final_data_yellow)
+Order by month) order by month
+
+
+
+-----------------------------------Bar Chart [chart 4] Pick up timing Time Span -----------------------------------------------
+
+
+WITH 
+green_17_18 as (SELECT lpep_pickup_datetime as Green_time FROM `cs-686-dpc.nyc_tlc_trip_records.green_trip_18_17`),
+green_19 as (SELECT lpep_pickup_datetime as Green_time FROM `cs-686-dpc.nyc_tlc_trip_records.green_trip_19`),
+green as (SELECT * FROM green_17_18 UNION ALL SELECT * FROM green_19),
+yellow as  (SELECT tpep_pickup_datetime as Yellow_time FROM `cs-686-dpc.nyc_tlc_trip_records.yellow_trip`),
+final_data_green as (SELECT time , count(*) as c1 from (Select Extract(Hour From green.Green_time) as time From green) 
+group by time order by time),
+final_data_yellow as (SELECT time , count(*) as c1 from (Select Extract(Hour From yellow.Yellow_time) as time From yellow) 
+group by time order by time),
+green_graph_data as (
+SELECT CASE
+    WHEN time between 0 and 2 THEN '00-02'
+    WHEN time between 3 and 5 THEN '03-05'
+    WHEN time between 6 and 8 THEN '06-08'
+    WHEN time between 9 and 11 THEN '09-11'
+    WHEN time between 12 and 14 THEN '12-14'
+    WHEN time between 15 and 17 THEN '15-17'
+    WHEN time between 18 and 20 THEN '18-20'
+    WHEN time between 21 and 23 THEN '21-23'
+END AS span,sum(c1) as total, 'Green' as Taxis_type
+FROM final_data_green
+group by span),
+
+yellow_graph_data as (SELECT CASE
+    WHEN time between 0 and 2 THEN '00-02'
+    WHEN time between 3 and 5 THEN '03-05'
+    WHEN time between 6 and 8 THEN '06-08'
+    WHEN time between 9 and 11 THEN '09-11'
+    WHEN time between 12 and 14 THEN '12-14'
+    WHEN time between 15 and 17 THEN '15-17'
+    WHEN time between 18 and 20 THEN '18-20'
+    WHEN time between 21 and 23 THEN '21-23'
+END AS span,sum(c1) as total, 'Yellow' as Taxis_type
+FROM final_data_yellow
+group by span order by 1)
+
+
+Select *, SUBSTR(span, 0, 2) as timeslot From ((select * from green_graph_data)
+UNION ALL
+(select * from yellow_graph_data))
+order by timeslot
+
+
+----------------------------Stack Area [chart 5] Monthly tips over three year for Green Taxis --------------------------------------------
+
+WITH 
+green_17_18 as (SELECT lpep_pickup_datetime as Green_time, tip_amount as amount FROM `cs-686-dpc.nyc_tlc_trip_records.green_trip_18_17`),
+green_19 as (SELECT lpep_pickup_datetime as Green_time, tip_amount as amount FROM `cs-686-dpc.nyc_tlc_trip_records.green_trip_19`),
+green as (SELECT * FROM green_17_18 UNION ALL SELECT * FROM green_19),
+
+final_data_green as (SELECT month , year, SUM(amount) as total from 
+(Select Extract(Month From green.Green_time) as month, Extract(Year From green.Green_time) as year, amount From green
+)
+ Where year between 2017 and 2019 group by month, year order by month, year)
+
+
+
+(SELECT CASE
+    WHEN Month_Name = 1 THEN 'January'
+    WHEN Month_Name = 2 THEN 'February'
+    WHEN Month_Name = 3 THEN 'March'
+    WHEN Month_Name = 4  THEN 'April'
+    WHEN Month_Name = 5 THEN 'May'
+    WHEN Month_Name = 6 THEN 'June'
+    WHEN Month_Name = 7  THEN 'July'
+    WHEN Month_Name = 8 THEN 'August'
+    WHEN Month_Name = 9 THEN 'September'
+    WHEN Month_Name = 10 THEN 'October'
+    WHEN Month_Name = 11 THEN 'November'
+    WHEN Month_Name = 12 THEN 'December'
+END AS Months, total, month, Taxis_type, year FROM 
+(Select total, month, 'Green Taxis' as Taxis_Type, year, month as Month_Name from final_data_green)
+Order by month)
+
+
+
+----------------------------Stack Area [chart 6] Monthly tips over three year for Yellow Taxis --------------------------------------------
+
+WITH 
+yellow as (SELECT tpep_pickup_datetime as Yellow_time, tip_amount as amount FROM `cs-686-dpc.nyc_tlc_trip_records.yellow_trip`),
+
+final_data_yellow as (SELECT month , year, SUM(amount) as total from 
+(Select Extract(Month From yellow.Yellow_time) as month, Extract(Year From yellow.Yellow_time) as year, amount From yellow
+)
+ Where year between 2017 and 2019 group by month, year order by month, year)
+
+
+
+(SELECT CASE
+    WHEN Month_Name = 1 THEN 'January'
+    WHEN Month_Name = 2 THEN 'February'
+    WHEN Month_Name = 3 THEN 'March'
+    WHEN Month_Name = 4  THEN 'April'
+    WHEN Month_Name = 5 THEN 'May'
+    WHEN Month_Name = 6 THEN 'June'
+    WHEN Month_Name = 7  THEN 'July'
+    WHEN Month_Name = 8 THEN 'August'
+    WHEN Month_Name = 9 THEN 'September'
+    WHEN Month_Name = 10 THEN 'October'
+    WHEN Month_Name = 11 THEN 'November'
+    WHEN Month_Name = 12 THEN 'December'
+END AS Months, total, month, Taxis_type, year FROM 
+(Select total, month, 'Yellow Taxis' as Taxis_Type, year, month as Month_Name from final_data_yellow)
+Order by month)
+
+
+
+
+----------------------------Table [Table 1] Trending Payment over three year for Green Taxis --------------------------------------------
+
+CREATE TEMP FUNCTION
+  count_check(params ARRAY<INT64>)
+  RETURNS BOOL
+  LANGUAGE js AS """
+  var count = 0;
+  for(var i = 0; i < params.length-1; i++) {
+          if(params[i] < params[i+1])
+          {
+            count++;
+            if(count == 2)
+            {
+              return true;
+            }
+          }
+          else
+          {
+            count = 0;
+          }
+    }
+
+  return false;
+""";
+
+
+WITH
+green_17_18 as (SELECT payment_type as mode,  Extract(Year from lpep_pickup_datetime) as year, 
+Extract(Month from lpep_pickup_datetime) as month 
+FROM `cs-686-dpc.nyc_tlc_trip_records.green_trip_18_17`),
+green_19 as (SELECT payment_type as mode,  Extract(Year from lpep_pickup_datetime) as year,
+Extract(Month from lpep_pickup_datetime) as month
+FROM `cs-686-dpc.nyc_tlc_trip_records.green_trip_19`),
+green as (SELECT * FROM green_17_18 UNION ALL SELECT * From green_19),
+green_data as(SELECT mode, ARRAY_AGG(mode_count ORDER BY month) AS count_array, year FROM 
+(SELECT mode , count(*) as mode_count, month, year
+FROM green where mode between 1 and 5 and year between 2017 and 2019
+group by month, year, mode order by mode, year, month)
+group by year,mode order by year)
+
+
+SELECT year, ARRAY_AGG(STRUCT (Payment_type as payment_mode, mode as payment_code)) as type FROM (SELECT case when mode = 1.0 then 'Credit card'
+when mode = 2.0 then 'Cash'
+when mode = 3.0 then 'No charge'
+when mode = 4.0 then 'Dispute' 
+when mode = 5.0 then 'Other' end as Payment_type, mode, year FROM 
+(SELECT mode,year, count_check(count_array) as check FROM green_data)
+WHERE check = true) group by 1
+
+
+----------------------------Table [Table 2] Trending Payment over three year for Yellow Taxis --------------------------------------------
+
+
+CREATE TEMP FUNCTION
+  count_check(params ARRAY<INT64>)
+  RETURNS BOOL
+  LANGUAGE js AS """
+  var count = 0;
+  for(var i = 0; i < params.length-1; i++) {
+          if(params[i] < params[i+1])
+          {
+            count++;
+            if(count == 2)
+            {
+              return true;
+            }
+          }
+          else
+          {
+            count = 0;
+          }
+    }
+
+  return false;
+""";
+
+WITH
+yellow as (SELECT payment_type as mode,  Extract(Year from tpep_pickup_datetime) as year, 
+Extract(Month from tpep_pickup_datetime) as month 
+FROM `cs-686-dpc.nyc_tlc_trip_records.yellow_trip`),
+yellow_data as(SELECT mode, ARRAY_AGG(mode_count ORDER BY month) AS count_array, year FROM 
+(SELECT mode , count(*) as mode_count, month, year
+FROM yellow where mode between 1 and 5 and year between 2017 and 2019
+group by month, year, mode order by mode, year, month)
+group by year,mode order by year)
+
+
+SELECT year, ARRAY_AGG(STRUCT (Payment_type as payment_mode, mode as payment_code)) as type FROM 
+(SELECT case when mode = 1.0 then 'Credit card'
+when mode = 2.0 then 'Cash'
+when mode = 3.0 then 'No charge'
+when mode = 4.0 then 'Dispute' 
+when mode = 5.0 then 'Other' end as Payment_type, mode, year FROM 
+(SELECT mode,year, count_check(count_array) as check FROM yellow_data)
+WHERE check = true) group by 1
+
+
+
+----------------------------Table [Table 3] Busiest Pickup location Id for Green Taxis --------------------------------------------------
+
+WITH
+green_17_18 as (SELECT lpep_pickup_datetime as Green_time, PULocationID as location 
+FROM `cs-686-dpc.nyc_tlc_trip_records.green_trip_18_17`),
+green_19 as (SELECT lpep_pickup_datetime as Green_time,PULocationID as location 
+FROM `cs-686-dpc.nyc_tlc_trip_records.green_trip_19`),
+green as (SELECT * FROM green_17_18 UNION ALL SELECT * FROM green_19),
+final_data_green as (SELECT location , count(*) as location_count, year
+from (Select Extract(year From green.Green_time) as year, location From green) 
+Where year between 2017 and 2019
+group by year, location order by location_count desc)
+
+SELECT year, ARRAY_AGG(STRUCT (location as Location_Id, location_count as Pickup_Count, rank_pos as Ranking)) as data FROM 
+(SELECT year, location, location_count, rank() over(partition by year order by location_count desc) as rank_pos FROM final_data_green)
+WHERE rank_pos < 4 group by year
+
+
+
+
+----------------------------Table [Table 4] Busiest Pickup location Id for yellow Taxis ---------------------------------------------------
+WITH
+yellow as (SELECT tpep_pickup_datetime as yellow_time, PULocationID as location FROM `cs-686-dpc.nyc_tlc_trip_records.yellow_trip`),
+final_data_yellow as (SELECT location , count(*) as location_count, year
+from (Select Extract(year From yellow.yellow_time) as year, location From yellow) Where year between 2017 and 2019
+group by year, location order by location_count desc)
+
+SELECT year, ARRAY_AGG(STRUCT (location as Location_Id, location_count as Pickup_Count, rank_pos as Ranking)) as data FROM 
+(SELECT year, location, location_count, rank() over(partition by year order by location_count desc) as rank_pos FROM final_data_yellow)
+WHERE rank_pos < 4 group by year
+
+
+
+
+
+
+
+
+
+
+
+
